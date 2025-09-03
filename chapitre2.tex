@@ -1,0 +1,105 @@
+%% Auteur: Simon-Pierre Boucher, Université Laval, Chapitre 2 : thèse de doctorat
+
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsfonts,eurosym,geometry,ulem,graphicx,caption,color,setspace,comment,footmisc,pdflscape,subfigure,array,hyperref}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\usepackage{tablefootnote}
+\usepackage{ragged2e}
+\usepackage{nicematrix}
+\usepackage{enumitem}
+\usepackage{wasysym}
+\usepackage{framed}
+\usepackage{pgfgantt}
+\usepackage{subfloat}
+\usepackage{blindtext}
+\usepackage{colortbl}
+\usepackage{palatino}
+\usepackage{mathpazo}
+\usepackage[flushleft]{threeparttable}
+\usepackage[margin=15pt,font=small,labelfont={bf,sf}]{caption}
+\usepackage[semibold]{sourcesanspro}
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+\hypersetup{colorlinks,
+citecolor=blue,
+linkcolor=magenta
+}
+
+\usepackage{environ,atbegshi}
+\makeatletter
+\newif\ifAtEnd@DontShowMe
+\newcommand*\contents@DontShowMe{}
+
+\normalem
+
+\doublespacing
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newtheorem{hyp}{Hypothesis}
+\newtheorem{subhyp}{Hypothesis}[hyp]
+\renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}%abbrvnat
+\setcitestyle{authoryear,open={(},close={)}} %Citation-related commands
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+\title{\textbf{Modelling Volatility Dynamics Between Commodity ETFs and Their Net Asset Value using BVAR and HAR Models}%\thanks{The authors thank participants at seminars at Humboldt University Berlin, South Dakota State University (Ness School), University of Illinois, Urbana-Champaign (ACE), and at meetings of the Commodity \& Energy Markets Association (2021),  World Finance \& Banking Association (2021), Société canadienne de science  économique (2022), 4th Ethical Finance and Sustainability (EFS) conference (2022), and Multinational Finance Society (2022), as well as Jocelyn Grira, Joseph Marks, Alessandro Melone (discussants) and Scott Irwin,  Michel Robe and Zhiguang Wang. For financial support, the authors thank the Social Sciences and Humanities Research Council and the Chaire Industrielle-Alliance Groupe financier. Any remaining errors are ours alone.}
+}
+
+
+\author{Simon-Pierre Boucher\footnote{PhD student in finance, Université Laval, Quebec City QC Canada G1V 0A6, email:   \texttt{simon-pierre.boucher.1@ulaval.ca}}\and Marie-H{\'e}l{\`e}ne Gagnon\footnote{Professor of Finance and Research Fellow, CRREP, Université Laval, email: \texttt{marie-helene.gagnon@fsa.ulaval.ca}}\and Gabriel J. Power\footnote{IG Wealth Management Chairholder, Professor of Finance and Research Fellow, CRREP and CRIB, Université Laval, email:   \texttt{gabriel.power@fsa.ulaval.ca}}}
+
+\date{\today}
+\begin{document}
+\begin{titlepage}
+\maketitle
+
+\begin{abstract}
+\singlespacing
+\noindent 
+We examine volatility transmission between commodity ETFs and their underlying assets using high-frequency realized variance data across multiple sampling frequencies. Analyzing crude oil, gold, silver, and natural gas ETFs with HAR-X models and Bayesian VAR, we document systematic heterogeneity in volatility spillovers. Precious metals exhibit strong unidirectional transmission from underlying assets to ETFs, with gold coefficients reaching 0.632 at 1-minute frequency and negligible reverse effects. Energy commodities show bidirectional transmission with asymmetries favoring underlying-to-ETF spillovers. Sampling frequency critically affects transmission measurement: 1-minute data reveals effects up to three times larger than 30-minute estimates. Jump components dominate continuous volatility transmission, particularly for precious metals. Our Bayesian analysis confirms that underlying volatility often rivals ETF self-persistence in predicting ETF dynamics. 
+
+\vspace{0.2in}
+\noindent\textbf{Keywords:} ETF volatility transmission, commodity markets, realized variance, HAR models, market microstructure.\\
+\textbf{JEL Classification:} G12, G13, G14, C32
+
+\bigskip
+\end{abstract}
+\doublespacing
+
+\setcounter{page}{0}
+\thispagestyle{empty}
+\end{titlepage}
+\pagebreak \newpage
+
+
+
+
+% Include all sections
+\input{sections/01_introduction}
+\input{sections/02_literature_review}
+\input{sections/03_data}
+\input{sections/04_methods}
+\input{sections/05_results}
+\input{sections/06_conclusion}
+
+% Bibliography
+\bibliography{master}
+\doublespacing
+
+\input{tables}
+\input{figures}
+
+
+\end{document}

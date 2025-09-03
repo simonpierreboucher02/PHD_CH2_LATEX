@@ -1,0 +1,683 @@
+%% Auteur: Simon-Pierre Boucher, Université Laval, Chapitre 2 : thèse de doctorat
+
+\section{Tables}
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive Statistics for Realized Volatility, Quadratic Power Variation, and Jump Variables}
+\label{tab:desc_stats_5min}
+\begin{threeparttable}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\multicolumn{1}{l}{Commodity} & Variable & Obs & Mean & Std. Dev. & Min & Max \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A: Realized Volatility}} \\
+\addlinespace[0.1cm]
+Crude Oil & $RV_{t,NAV}$ & 3,935 & 0.081 & 0.717 & 0.002 & 42.082 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.066 & 0.204 & 0.001 & 10.335 \\
+\addlinespace[0.05cm]
+Gold      & $RV_{t,NAV}$ & 3,935 & 0.012 & 0.017 & 0.001 & 0.327 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.034 & 1.259 & 0.001 & 78.988 \\
+\addlinespace[0.05cm]
+Silver    & $RV_{t,NAV}$ & 3,935 & 0.043 & 0.063 & 0.002 & 1.120 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.042 & 0.067 & 0.004 & 1.286 \\
+\addlinespace[0.05cm]
+Natural Gas & $RV_{t,NAV}$ & 3,935 & 0.104 & 0.173 & 0.010 & 6.635 \\
+            & $RV_{t,ETF}$ & 3,935 & 0.103 & 0.116 & 0.004 & 1.651 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel B: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+Crude Oil & $QPV_{t,NAV}$ & 3,935 & 0.110 & 6.797 & 0.000 & 426.363 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.003 & 0.121 & 0.000 & 7.295 \\
+\addlinespace[0.05cm]
+Gold      & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.007 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.027 \\
+\addlinespace[0.05cm]
+Silver    & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.003 & 0.000 & 0.139 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.043 \\
+\addlinespace[0.05cm]
+Natural Gas & $QPV_{t,NAV}$ & 3,935 & 0.003 & 0.152 & 0.000 & 9.555 \\
+            & $QPV_{t,ETF}$ & 3,935 & 0.001 & 0.030 & 0.000 & 1.881 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel C: Jump Component}} \\
+\addlinespace[0.1cm]
+Crude Oil & $J_{t,NAV}$ & 3,935 & $-$0.028 & 6.132 & 0.000 & 8.941 \\
+          & $J_{t,ETF}$ & 3,935 & 0.063 & 0.124 & 0.000 & 3.040 \\
+\addlinespace[0.05cm]
+Gold      & $J_{t,NAV}$ & 3,935 & 0.012 & 0.017 & 0.001 & 0.324 \\
+          & $J_{t,ETF}$ & 3,935 & 0.034 & 1.259 & 0.001 & 78.981 \\
+\addlinespace[0.05cm]
+Silver    & $J_{t,NAV}$ & 3,935 & 0.042 & 0.061 & 0.002 & 1.094 \\
+          & $J_{t,ETF}$ & 3,935 & 0.042 & 0.066 & 0.004 & 1.243 \\
+\addlinespace[0.05cm]
+Natural Gas & $J_{t,NAV}$ & 3,935 & 0.101 & 0.209 & 0.000 & 6.634 \\
+            & $J_{t,ETF}$ & 3,935 & 0.102 & 0.113 & 0.000 & 1.651 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents descriptive statistics for realized volatility (RV), quadratic power variation (QPV), and jump component (J) variables constructed using 5-minute price data. All values are expressed in percentages. NAV refers to net asset value prices, and ETF refers to exchange-traded fund prices. The sample period includes 3,935 daily observations for each commodity.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive Statistics for Realized Volatility, Quadratic Power Variation, and Jump Variables (1-minute data)}
+\label{tab:desc_stats_1min}
+\begin{threeparttable}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\multicolumn{1}{l}{Commodity} & Variable & Obs & Mean & Std. Dev. & Min & Max \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A: Realized Volatility}} \\
+\addlinespace[0.1cm]
+Crude Oil & $RV_{t,NAV}$ & 3,935 & 0.083 & 0.959 & 0.001 & 58.167 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.058 & 0.250 & 0.001 & 14.051 \\
+\addlinespace[0.05cm]
+Gold      & $RV_{t,NAV}$ & 3,935 & 0.012 & 0.018 & 0.001 & 0.302 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.031 & 1.259 & 0.001 & 78.986 \\
+\addlinespace[0.05cm]
+Silver    & $RV_{t,NAV}$ & 3,935 & 0.040 & 0.064 & 0.001 & 1.347 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.036 & 0.061 & 0.002 & 1.367 \\
+\addlinespace[0.05cm]
+Natural Gas & $RV_{t,NAV}$ & 3,935 & 0.099 & 0.174 & 0.007 & 6.699 \\
+            & $RV_{t,ETF}$ & 3,935 & 0.086 & 0.096 & 0.004 & 1.634 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel B: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+Crude Oil & $QPV_{t,NAV}$ & 3,935 & 0.019 & 1.152 & 0.000 & 72.288 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.004 & 0.191 & 0.000 & 11.936 \\
+\addlinespace[0.05cm]
+Gold      & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.004 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.016 \\
+\addlinespace[0.05cm]
+Silver    & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.060 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.025 \\
+\addlinespace[0.05cm]
+Natural Gas & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.004 & 0.000 & 0.232 \\
+            & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.039 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel C: Jump Component}} \\
+\addlinespace[0.1cm]
+Crude Oil & $J_{t,NAV}$ & 3,935 & 0.064 & 0.330 & 0.000 & 8.933 \\
+          & $J_{t,ETF}$ & 3,935 & 0.055 & 0.112 & 0.001 & 3.172 \\
+\addlinespace[0.05cm]
+Gold      & $J_{t,NAV}$ & 3,935 & 0.012 & 0.018 & 0.001 & 0.300 \\
+          & $J_{t,ETF}$ & 3,935 & 0.031 & 1.259 & 0.001 & 78.969 \\
+\addlinespace[0.05cm]
+Silver    & $J_{t,NAV}$ & 3,935 & 0.040 & 0.063 & 0.001 & 1.328 \\
+          & $J_{t,ETF}$ & 3,935 & 0.036 & 0.060 & 0.002 & 1.344 \\
+\addlinespace[0.05cm]
+Natural Gas & $J_{t,NAV}$ & 3,935 & 0.098 & 0.173 & 0.007 & 6.697 \\
+            & $J_{t,ETF}$ & 3,935 & 0.086 & 0.095 & 0.004 & 1.634 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents descriptive statistics for realized volatility (RV), quadratic power variation (QPV), and jump component (J) variables constructed using 1-minute price data. All values are expressed in percentages. NAV refers to net asset value prices, and ETF refers to exchange-traded fund prices. The sample period includes 3,935 daily observations for each commodity.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Descriptive Statistics for Realized Volatility, Quadratic Power Variation, and Jump Variables (30-minute data)}
+\label{tab:desc_stats_30min}
+\begin{threeparttable}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\multicolumn{1}{l}{Commodity} & Variable & Obs & Mean & Std. Dev. & Min & Max \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A: Realized Volatility}} \\
+\addlinespace[0.1cm]
+Crude Oil & $RV_{t,NAV}$ & 3,935 & 0.073 & 0.459 & 0.001 & 23.817 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.052 & 0.176 & 0.000 & 8.995 \\
+\addlinespace[0.05cm]
+Gold      & $RV_{t,NAV}$ & 3,935 & 0.011 & 0.019 & 0.001 & 0.407 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.030 & 1.257 & 0.000 & 78.854 \\
+\addlinespace[0.05cm]
+Silver    & $RV_{t,NAV}$ & 3,935 & 0.039 & 0.069 & 0.001 & 1.701 \\
+          & $RV_{t,ETF}$ & 3,935 & 0.033 & 0.060 & 0.001 & 1.618 \\
+\addlinespace[0.05cm]
+Natural Gas & $RV_{t,NAV}$ & 3,935 & 0.093 & 0.176 & 0.004 & 6.829 \\
+            & $RV_{t,ETF}$ & 3,935 & 0.077 & 0.093 & 0.002 & 1.668 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel B: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+Crude Oil & $QPV_{t,NAV}$ & 3,935 & 0.002 & 0.067 & 0.000 & 4.036 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.013 & 0.000 & 0.831 \\
+\addlinespace[0.05cm]
+Gold      & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.002 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.000 & 0.000 & 0.002 \\
+\addlinespace[0.05cm]
+Silver    & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.050 \\
+          & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.037 \\
+\addlinespace[0.05cm]
+Natural Gas & $QPV_{t,NAV}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.044 \\
+            & $QPV_{t,ETF}$ & 3,935 & 0.000 & 0.001 & 0.000 & 0.035 \\
+\addlinespace[0.2cm]
+
+\multicolumn{7}{l}{\textit{Panel C: Jump Component}} \\
+\addlinespace[0.1cm]
+Crude Oil & $J_{t,NAV}$ & 3,935 & 0.072 & 0.401 & 0.001 & 19.781 \\
+          & $J_{t,ETF}$ & 3,935 & 0.051 & 0.165 & 0.000 & 8.164 \\
+\addlinespace[0.05cm]
+Gold      & $J_{t,NAV}$ & 3,935 & 0.011 & 0.018 & 0.001 & 0.404 \\
+          & $J_{t,ETF}$ & 3,935 & 0.030 & 1.257 & 0.000 & 78.852 \\
+\addlinespace[0.05cm]
+Silver    & $J_{t,NAV}$ & 3,935 & 0.038 & 0.068 & 0.001 & 1.665 \\
+          & $J_{t,ETF}$ & 3,935 & 0.033 & 0.059 & 0.001 & 1.583 \\
+\addlinespace[0.05cm]
+Natural Gas & $J_{t,NAV}$ & 3,935 & 0.093 & 0.175 & 0.004 & 6.823 \\
+            & $J_{t,ETF}$ & 3,935 & 0.077 & 0.093 & 0.002 & 1.633 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents descriptive statistics for realized volatility (RV), quadratic power variation (QPV), and jump component (J) variables constructed using 30-minute price data. All values are expressed in percentages. NAV refers to net asset value prices, and ETF refers to exchange-traded fund prices. The sample period includes 3,935 daily observations for each commodity.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+
+
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-X Model Estimates with 5-minute Realized Variance}
+\label{tab:HAR_5min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+$RV_{t-1,NAV}$ & 0.288*** & 0.311*** & 0.253*** & 0.515*** & 0.345*** & 0.383*** & 0.092** & 0.105*** \\
+               & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,NAV}$ & 0.408*** &  & 0.338*** &  & 0.318*** &  & 0.393*** &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,NAV}$ & 0.144*** &  & 0.321*** &  & 0.271*** &  & 0.313*** &  \\
+                          & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$RV_{t-1,ETF}$ & 0.111*** & 0.098*** & 0.021 & $-$0.084* & $-$0.009 & $-$0.015 & 0.126*** & 0.084*** \\
+               & (0.000) & (0.000) & (0.158) & (0.062) & (0.612) & (0.464) & (0.000) & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,ETF}$ &  & 0.297*** &  & 0.270*** &  & 0.209*** &  & 0.431*** \\
+                         &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,ETF}$ &  & 0.227*** &  & 0.164*** &  & 0.342*** &  & 0.332*** \\
+                          &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-X model using 5-minute realized variance data. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $RV_{t-1}$ represents the lagged daily realized variance, $\overline{RV}_{t-5}$ is the average of the past 5 days' realized variances, and $\overline{RV}_{t-22}$ is the average of the past 22 days' realized variances.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-X Model Estimates with 1-minute Realized Variance}
+\label{tab:HAR_1min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+$RV_{t-1,NAV}$ & 0.371*** & 0.378*** & 0.331*** & 0.632*** & 0.404*** & 0.418*** & 0.121*** & 0.079*** \\
+               & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,NAV}$ & 0.387*** &  & 0.329*** &  & 0.297*** &  & 0.386*** &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,NAV}$ & 0.109*** &  & 0.280*** &  & 0.226*** &  & 0.285*** &  \\
+                          & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$RV_{t-1,ETF}$ & 0.089*** & 0.097*** & $-$0.001 & $-$0.059* & 0.004 & 0.015 & 0.127*** & 0.124*** \\
+               & (0.000) & (0.000) & (0.961) & (0.065) & (0.804) & (0.410) & (0.000) & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,ETF}$ &  & 0.272*** &  & 0.196*** &  & 0.206*** &  & 0.438*** \\
+                         &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,ETF}$ &  & 0.200*** &  & 0.113*** &  & 0.276*** &  & 0.318*** \\
+                          &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+$R^2$ & 0.XXX & 0.XXX & 0.XXX & 0.XXX & 0.XXX & 0.XXX & 0.XXX & 0.XXX \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-X model using 1-minute realized variance data. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $RV_{t-1}$ represents the lagged daily realized variance, $\overline{RV}_{t-5}$ is the average of the past 5 days' realized variances, and $\overline{RV}_{t-22}$ is the average of the past 22 days' realized variances.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-X Model Estimates with 30-minute Realized Variance}
+\label{tab:HAR_30min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+$RV_{t-1,NAV}$ & 0.133*** & 0.200*** & 0.150*** & 0.387*** & 0.226*** & 0.277*** & 0.043 & 0.081*** \\
+               & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.121) & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,NAV}$ & 0.461*** &  & 0.335*** &  & 0.319*** &  & 0.399*** &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,NAV}$ & 0.243*** &  & 0.445*** &  & 0.394*** &  & 0.393*** &  \\
+                          & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.1cm]
+$RV_{t-1,ETF}$ & 0.103*** & 0.049 & $-$0.015 & $-$0.128** & $-$0.034 & $-$0.075** & 0.074** & 0.012 \\
+               & (0.000) & (0.149) & (0.476) & (0.019) & (0.140) & (0.013) & (0.030) & (0.662) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-5,ETF}$ &  & 0.363*** &  & 0.332*** &  & 0.238*** &  & 0.405*** \\
+                         &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.1cm]
+$\overline{RV}_{t-22,ETF}$ &  & 0.319*** &  & 0.212*** &  & 0.460*** &  & 0.447*** \\
+                          &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-X model using 30-minute realized variance data. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $RV_{t-1}$ represents the lagged daily realized variance, $\overline{RV}_{t-5}$ is the average of the past 5 days' realized variances, and $\overline{RV}_{t-22}$ is the average of the past 22 days' realized variances.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-CJ-X Model Estimates with 5-minute Realized Variance}
+\label{tab:HAR_CJ_5min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+\multicolumn{9}{l}{\textit{Panel A: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+$QPV_{t-1,NAV}$ & 0.049** & 0.008 & 0.026 & $-$0.001 & $-$0.015 & $-$0.026 & 0.065*** & 0.016 \\
+                & (0.025) & (0.661) & (0.239) & (0.957) & (0.467) & (0.273) & (0.001) & (0.400) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,NAV}$ & 0.032 &  & $-$0.027 &  & $-$0.030 &  & 0.110*** &  \\
+                          & (0.167) &  & (0.317) &  & (0.236) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,NAV}$ & $-$0.046*** &  & $-$0.021 &  & $-$0.005 &  & 0.044** &  \\
+                           & (0.007) &  & (0.341) &  & (0.793) &  & (0.018) &  \\
+\addlinespace[0.05cm]
+$QPV_{t-1,ETF}$ & 0.001 & 0.043** & $-$0.015 & $-$0.030 & 0.006 & 0.010 & 0.011 & 0.028* \\
+                & (0.969) & (0.038) & (0.545) & (0.248) & (0.779) & (0.686) & (0.620) & (0.088) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,ETF}$ &  & 0.017 &  & $-$0.008 &  & $-$0.003 &  & 0.062*** \\
+                          &  & (0.454) &  & (0.737) &  & (0.876) &  & (0.001) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,ETF}$ &  & $-$0.040** &  & 0.133*** &  & 0.006 &  & 0.038 \\
+                           &  & (0.043) &  & (0.000) &  & (0.763) &  & (0.137) \\
+\addlinespace[0.2cm]
+
+\multicolumn{9}{l}{\textit{Panel B: Jump Component}} \\
+\addlinespace[0.1cm]
+$J_{t-1,NAV}$ & 0.207*** & 0.280*** & 0.212*** & 0.491*** & 0.375*** & 0.431*** & $-$0.003 & 0.057* \\
+              & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.923) & (0.082) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,NAV}$ & 0.338*** &  & 0.407*** &  & 0.389*** &  & 0.220*** &  \\
+                        & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,NAV}$ & 0.267*** &  & 0.354*** &  & 0.272*** &  & 0.213*** &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$J_{t-1,ETF}$ & 0.094*** & 0.019 & 0.041 & $-$0.023 & $-$0.016 & $-$0.030 & 0.044 & 0.039 \\
+              & (0.000) & (0.473) & (0.156) & (0.497) & (0.527) & (0.291) & (0.190) & (0.195) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,ETF}$ &  & 0.264*** &  & 0.246*** &  & 0.214*** &  & 0.307*** \\
+                        &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,ETF}$ &  & 0.329*** &  & $-$0.014 &  & 0.327*** &  & 0.250*** \\
+                         &  & (0.000) &  & (0.631) &  & (0.000) &  & (0.000) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-CJ-X model using 5-minute realized variance data. The model incorporates both continuous (quadratic power variation, QPV) and jump (J) components. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $QPV_{t-1}$ and $J_{t-1}$ represent the lagged daily components, while $\overline{QPV}_{t-5}$, $\overline{J}_{t-5}$, $\overline{QPV}_{t-22}$, and $\overline{J}_{t-22}$ are the corresponding weekly and monthly averages.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-CJ-X Model Estimates with 1-minute Realized Variance}
+\label{tab:HAR_CJ_1min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+\multicolumn{9}{l}{\textit{Panel A: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+$QPV_{t-1,NAV}$ & 0.036 & $-$0.019 & $-$0.033* & $-$0.123*** & $-$0.041** & $-$0.065*** & 0.008 & $-$0.002 \\
+                & (0.246) & (0.525) & (0.096) & (0.000) & (0.039) & (0.002) & (0.773) & (0.920) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,NAV}$ & $-$0.021 &  & $-$0.076*** &  & $-$0.068*** &  & 0.116*** &  \\
+                          & (0.444) &  & (0.004) &  & (0.009) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,NAV}$ & $-$0.031 &  & $-$0.001 &  & 0.009 &  & $-$0.040** &  \\
+                           & (0.309) &  & (0.976) &  & (0.716) &  & (0.046) &  \\
+\addlinespace[0.05cm]
+$QPV_{t-1,ETF}$ & $-$0.011 & 0.009 & $-$0.020* & $-$0.032* & $-$0.011 & $-$0.014 & $-$0.011 & $-$0.021* \\
+                & (0.665) & (0.698) & (0.062) & (0.089) & (0.617) & (0.514) & (0.671) & (0.089) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,ETF}$ &  & $-$0.014 &  & 0.016 &  & 0.003 &  & 0.016 \\
+                          &  & (0.591) &  & (0.566) &  & (0.895) &  & (0.554) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,ETF}$ &  & $-$0.024** &  & 0.060*** &  & $-$0.017 &  & $-$0.014 \\
+                           &  & (0.036) &  & (0.003) &  & (0.463) &  & (0.617) \\
+\addlinespace[0.2cm]
+
+\multicolumn{9}{l}{\textit{Panel B: Jump Component}} \\
+\addlinespace[0.1cm]
+$J_{t-1,NAV}$ & 0.306*** & 0.432*** & 0.426*** & 0.892*** & 0.510*** & 0.578*** & 0.092* & 0.090*** \\
+              & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.000) & (0.075) & (0.000) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,NAV}$ & 0.435*** &  & 0.509*** &  & 0.468*** &  & 0.219*** &  \\
+                        & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,NAV}$ & 0.190*** &  & 0.234*** &  & 0.161*** &  & 0.346*** &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$J_{t-1,ETF}$ & 0.096*** & 0.077** & 0.031 & 0.011 & 0.028 & 0.051 & 0.128*** & 0.166*** \\
+              & (0.000) & (0.019) & (0.290) & (0.689) & (0.313) & (0.106) & (0.000) & (0.000) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,ETF}$ &  & 0.300*** &  & 0.132** &  & 0.184*** &  & 0.401*** \\
+                        &  & (0.000) &  & (0.023) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,ETF}$ &  & 0.250*** &  & 0.028 &  & 0.295*** &  & 0.350*** \\
+                         &  & (0.000) &  & (0.455) &  & (0.000) &  & (0.000) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-CJ-X model using 1-minute realized variance data. The model incorporates both continuous (quadratic power variation, QPV) and jump (J) components. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $QPV_{t-1}$ and $J_{t-1}$ represent the lagged daily components, while $\overline{QPV}_{t-5}$, $\overline{J}_{t-5}$, $\overline{QPV}_{t-22}$, and $\overline{J}_{t-22}$ are the corresponding weekly and monthly averages.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{HAR-CJ-X Model Estimates with 30-minute Realized Variance}
+\label{tab:HAR_CJ_30min}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Crude Oil}} & \multicolumn{2}{c}{\textbf{Gold}} & \multicolumn{2}{c}{\textbf{Silver}} & \multicolumn{2}{c}{\textbf{Natural Gas}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ & $RV_{t,NAV}$ & $RV_{t,ETF}$ \\
+\midrule
+\multicolumn{9}{l}{\textit{Panel A: Quadratic Power Variation}} \\
+\addlinespace[0.1cm]
+$QPV_{t-1,NAV}$ & 0.019 & $-$0.026 & 0.058*** & 0.067*** & 0.013 & 0.033 & 0.057*** & 0.027 \\
+                & (0.535) & (0.421) & (0.005) & (0.003) & (0.596) & (0.235) & (0.008) & (0.278) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,NAV}$ & 0.029 &  & $-$0.051** &  & $-$0.008 &  & 0.114*** &  \\
+                          & (0.375) &  & (0.044) &  & (0.779) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,NAV}$ & $-$0.001 &  & 0.001 &  & $-$0.045* &  & 0.156*** &  \\
+                           & (0.975) &  & (0.977) &  & (0.098) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$QPV_{t-1,ETF}$ & $-$0.010 & 0.015 & $-$0.018 & $-$0.027 & $-$0.006 & 0.001 & $-$0.014 & 0.001 \\
+                & (0.683) & (0.562) & (0.489) & (0.313) & (0.799) & (0.984) & (0.575) & (0.972) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-5,ETF}$ &  & 0.055** &  & $-$0.017 &  & $-$0.001 &  & 0.079*** \\
+                          &  & (0.033) &  & (0.517) &  & (0.966) &  & (0.001) \\
+\addlinespace[0.05cm]
+$\overline{QPV}_{t-22,ETF}$ &  & 0.016 &  & 0.234*** &  & $-$0.035 &  & 0.168*** \\
+                           &  & (0.517) &  & (0.000) &  & (0.191) &  & (0.000) \\
+\addlinespace[0.2cm]
+
+\multicolumn{9}{l}{\textit{Panel B: Jump Component}} \\
+\addlinespace[0.1cm]
+$J_{t-1,NAV}$ & 0.110** & 0.221*** & 0.054 & 0.206*** & 0.201*** & 0.216*** & $-$0.006 & 0.027 \\
+              & (0.019) & (0.000) & (0.190) & (0.000) & (0.000) & (0.000) & (0.870) & (0.381) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,NAV}$ & 0.403*** &  & 0.436*** &  & 0.339*** &  & 0.204*** &  \\
+                        & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) &  \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,NAV}$ & 0.248*** &  & 0.440*** &  & 0.489*** &  & 0.089 &  \\
+                         & (0.000) &  & (0.000) &  & (0.000) &  & (0.123) &  \\
+\addlinespace[0.05cm]
+$J_{t-1,ETF}$ & 0.110*** & 0.043 & 0.009 & $-$0.059 & $-$0.023 & $-$0.080* & 0.016 & 0.007 \\
+              & (0.000) & (0.181) & (0.772) & (0.183) & (0.428) & (0.077) & (0.608) & (0.823) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-5,ETF}$ &  & 0.259*** &  & 0.274*** &  & 0.241*** &  & 0.243*** \\
+                        &  & (0.000) &  & (0.000) &  & (0.000) &  & (0.000) \\
+\addlinespace[0.05cm]
+$\overline{J}_{t-22,ETF}$ &  & 0.283*** &  & $-$0.082* &  & 0.532*** &  & 0.088 \\
+                         &  & (0.000) &  & (0.058) &  & (0.000) &  & (0.224) \\
+\midrule
+Observations & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 & 3,935 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents estimation results for the HAR-CJ-X model using 30-minute realized variance data. The model incorporates both continuous (quadratic power variation, QPV) and jump (J) components. The dependent variables are the realized variances for NAV and ETF prices of each commodity. Standard errors are reported in parentheses. ***, **, and * denote statistical significance at the 1\%, 5\%, and 10\% levels, respectively. $QPV_{t-1}$ and $J_{t-1}$ represent the lagged daily components, while $\overline{QPV}_{t-5}$, $\overline{J}_{t-5}$, $\overline{QPV}_{t-22}$, and $\overline{J}_{t-22}$ are the corresponding weekly and monthly averages.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Bayesian Vector Autoregression Results: USO ETF and Net Asset Value}
+\label{tab:VAR_USO}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Panel A: $\log(RV_{t,NAV})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.570 & 0.024 & 0.000 & 0.570 & 0.524 & 0.617 \\
+$\log(RV_{t-2,NAV})$ & 0.261 & 0.021 & 0.000 & 0.261 & 0.221 & 0.300 \\
+$\log(RV_{t-1,ETF})$ & 0.074 & 0.020 & 0.000 & 0.074 & 0.034 & 0.113 \\
+$\log(RV_{t-2,ETF})$ & 0.016 & 0.018 & 0.000 & 0.016 & $-$0.019 & 0.051 \\
+\addlinespace[0.3cm]
+
+ & \multicolumn{6}{c}{\textbf{Panel B: $\log(RV_{t,ETF})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.286 & 0.028 & 0.000 & 0.286 & 0.231 & 0.343 \\
+$\log(RV_{t-2,NAV})$ & 0.193 & 0.025 & 0.000 & 0.193 & 0.144 & 0.241 \\
+$\log(RV_{t-1,ETF})$ & 0.294 & 0.024 & 0.000 & 0.294 & 0.246 & 0.342 \\
+$\log(RV_{t-2,ETF})$ & 0.106 & 0.022 & 0.000 & 0.106 & 0.064 & 0.148 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents posterior statistics from a Bayesian Vector Autoregression (VAR) model analyzing the relationship between the USO ETF and its Net Asset Value (NAV). Panel A shows results for the NAV equation, while Panel B shows results for the ETF equation. The model includes two lags of both log realized variances. Mean represents the posterior mean, Std. Dev. is the posterior standard deviation, MCSE is the Monte Carlo standard error, Median is the posterior median, and the 95\% credible interval provides the range of plausible parameter values. All realized variance measures are constructed using 5-minute price data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Bayesian Vector Autoregression Results: GLD ETF and Net Asset Value}
+\label{tab:VAR_GLD}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Panel A: $\log(RV_{t,NAV})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.551 & 0.027 & 0.000 & 0.551 & 0.498 & 0.603 \\
+$\log(RV_{t-2,NAV})$ & 0.248 & 0.023 & 0.000 & 0.248 & 0.203 & 0.293 \\
+$\log(RV_{t-1,ETF})$ & $-$0.010 & 0.023 & 0.000 & $-$0.010 & $-$0.055 & 0.034 \\
+$\log(RV_{t-2,ETF})$ & 0.038 & 0.019 & 0.000 & 0.038 & 0.000 & 0.076 \\
+\addlinespace[0.3cm]
+
+ & \multicolumn{6}{c}{\textbf{Panel B: $\log(RV_{t,ETF})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.349 & 0.033 & 0.000 & 0.348 & 0.285 & 0.413 \\
+$\log(RV_{t-2,NAV})$ & 0.276 & 0.028 & 0.000 & 0.276 & 0.222 & 0.331 \\
+$\log(RV_{t-1,ETF})$ & 0.155 & 0.028 & 0.000 & 0.155 & 0.100 & 0.208 \\
+$\log(RV_{t-2,ETF})$ & 0.048 & 0.023 & 0.000 & 0.048 & 0.003 & 0.095 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents posterior statistics from a Bayesian Vector Autoregression (VAR) model analyzing the relationship between the GLD ETF and its Net Asset Value (NAV). Panel A shows results for the NAV equation, while Panel B shows results for the ETF equation. The model includes two lags of both log realized variances. Mean represents the posterior mean, Std. Dev. is the posterior standard deviation, MCSE is the Monte Carlo standard error, Median is the posterior median, and the 95\% credible interval provides the range of plausible parameter values. All realized variance measures are constructed using 5-minute price data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Bayesian Vector Autoregression Results: SLV ETF and Net Asset Value}
+\label{tab:VAR_SLV}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Panel A: $\log(RV_{t,NAV})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.619 & 0.028 & 0.000 & 0.619 & 0.563 & 0.674 \\
+$\log(RV_{t-2,NAV})$ & 0.214 & 0.024 & 0.000 & 0.214 & 0.168 & 0.261 \\
+$\log(RV_{t-1,ETF})$ & $-$0.045 & 0.025 & 0.000 & $-$0.045 & $-$0.093 & 0.005 \\
+$\log(RV_{t-2,ETF})$ & 0.058 & 0.021 & 0.000 & 0.058 & 0.018 & 0.100 \\
+\addlinespace[0.3cm]
+
+ & \multicolumn{6}{c}{\textbf{Panel B: $\log(RV_{t,ETF})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.376 & 0.033 & 0.000 & 0.377 & 0.310 & 0.440 \\
+$\log(RV_{t-2,NAV})$ & 0.202 & 0.028 & 0.000 & 0.202 & 0.147 & 0.256 \\
+$\log(RV_{t-1,ETF})$ & 0.179 & 0.029 & 0.000 & 0.179 & 0.123 & 0.236 \\
+$\log(RV_{t-2,ETF})$ & 0.078 & 0.024 & 0.000 & 0.078 & 0.031 & 0.126 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents posterior statistics from a Bayesian Vector Autoregression (VAR) model analyzing the relationship between the SLV ETF and its Net Asset Value (NAV). Panel A shows results for the NAV equation, while Panel B shows results for the ETF equation. The model includes two lags of both log realized variances. Mean represents the posterior mean, Std. Dev. is the posterior standard deviation, MCSE is the Monte Carlo standard error, Median is the posterior median, and the 95\% credible interval provides the range of plausible parameter values. All realized variance measures are constructed using 5-minute price data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Bayesian Vector Autoregression Results: UNG ETF and Net Asset Value}
+\label{tab:VAR_UNG}
+\begin{threeparttable}
+\footnotesize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+ & \multicolumn{6}{c}{\textbf{Panel A: $\log(RV_{t,NAV})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.392 & 0.022 & 0.000 & 0.392 & 0.349 & 0.437 \\
+$\log(RV_{t-2,NAV})$ & 0.231 & 0.020 & 0.000 & 0.231 & 0.192 & 0.272 \\
+$\log(RV_{t-1,ETF})$ & 0.080 & 0.021 & 0.000 & 0.080 & 0.038 & 0.121 \\
+$\log(RV_{t-2,ETF})$ & 0.157 & 0.019 & 0.000 & 0.157 & 0.119 & 0.194 \\
+\addlinespace[0.3cm]
+
+ & \multicolumn{6}{c}{\textbf{Panel B: $\log(RV_{t,ETF})$}} \\
+\cmidrule(lr){2-7}
+Variable & Mean & Std. Dev. & MCSE & Median & \multicolumn{2}{c}{95\% Credible Interval} \\
+\cmidrule(lr){6-7}
+ &  &  &  &  & Lower & Upper \\
+\midrule
+$\log(RV_{t-1,NAV})$ & 0.130 & 0.024 & 0.000 & 0.130 & 0.083 & 0.177 \\
+$\log(RV_{t-2,NAV})$ & 0.165 & 0.022 & 0.000 & 0.165 & 0.124 & 0.208 \\
+$\log(RV_{t-1,ETF})$ & 0.339 & 0.023 & 0.000 & 0.339 & 0.294 & 0.383 \\
+$\log(RV_{t-2,ETF})$ & 0.240 & 0.020 & 0.000 & 0.240 & 0.200 & 0.280 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item This table presents posterior statistics from a Bayesian Vector Autoregression (VAR) model analyzing the relationship between the UNG ETF and its Net Asset Value (NAV). Panel A shows results for the NAV equation, while Panel B shows results for the ETF equation. The model includes two lags of both log realized variances. Mean represents the posterior mean, Std. Dev. is the posterior standard deviation, MCSE is the Monte Carlo standard error, Median is the posterior median, and the 95\% credible interval provides the range of plausible parameter values. All realized variance measures are constructed using 5-minute price data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}

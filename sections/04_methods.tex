@@ -1,0 +1,220 @@
+%% Auteur: Simon-Pierre Boucher, Université Laval, Chapitre 2 : thèse de doctorat
+
+\section{Methodology} \label{sec:methodology}
+
+This section presents our comprehensive econometric framework for analyzing volatility transmission dynamics between commodity ETFs and their indicative Net Asset Values. Our methodological approach combines two complementary modeling strategies: Heterogeneous Autoregressive (HAR) models that capture the long-memory characteristics of realized volatility across multiple time horizons, and Bayesian Vector Autoregression (BVAR) models that accommodate complex interdependencies while addressing parameter proliferation concerns. This dual approach enables robust identification of volatility transmission mechanisms while providing multiple perspectives on the same underlying economic phenomena.
+
+\subsection{Theoretical Framework for Volatility Transmission}
+
+Our theoretical framework builds on the established literature linking ETF pricing to arbitrage mechanisms and market microstructure effects \citep{ackert2000arbitrage, petajisto2017inefficiencies}. Under perfect market conditions, ETF prices should equal their Net Asset Values, implying that volatility transmission between ETFs and NAVs should be instantaneous and bidirectional. However, real-world frictions including transaction costs, inventory constraints, and funding limitations can create asymmetric transmission patterns that vary across time horizons and market conditions.
+
+The theoretical motivation for examining multiple time horizons stems from the heterogeneous market hypothesis of \citet{muller1997volatilities}, which posits that different types of market participants operate over different investment horizons. Day traders respond to minute-by-minute price movements, institutional investors rebalance portfolios weekly or monthly, and central banks intervene at even longer horizons. Each group's trading behavior generates volatility patterns that persist over their characteristic time scales, creating the complex multi-horizon dynamics captured by our modeling framework.
+
+For commodity ETFs, additional theoretical considerations arise from the specific mechanisms used to track underlying asset prices. Physically-backed ETFs like GLD and SLV rely on authorized participant arbitrage involving physical delivery, creating operational complexities that may slow volatility transmission. Futures-based ETFs like USO and UNG face roll-over costs and basis risk that can create systematic deviations from underlying commodity prices \citep{todorov2021etf}. These structural differences motivate our cross-sectional analysis of transmission patterns across different ETF types.
+
+\subsection{Realized Volatility Measurement Framework}
+
+Our volatility measurement framework follows the established realized volatility literature while addressing specific challenges posed by ETF market structure. For each asset $i$ (ETF or iNAV) on day $t$, we construct realized variance using intraday returns:
+
+\begin{equation} \label{eq:realized_variance}
+RV_{i,t} = \sum_{j=1}^{M} r_{i,t,j}^2
+\end{equation}
+
+where $r_{i,t,j} = \log(P_{i,t,j}) - \log(P_{i,t,j-1})$ represents the $j$-th intraday return and $M$ denotes the number of intraday observations per day. We construct realized variance estimates at three sampling frequencies: 1-minute ($M=390$), 5-minute ($M=78$), and 30-minute ($M=13$) intervals.
+
+The theoretical foundation for realized variance estimation rests on the quadratic variation theory of \citet{barndorff2002econometric}. Under general regularity conditions, realized variance converges to integrated variance as the sampling frequency increases:
+
+\begin{equation} \label{eq:quadratic_variation}
+\text{plim}_{M \to \infty} RV_{i,t} = \int_{t-1}^{t} \sigma_{i,s}^2 ds = IV_{i,t}
+\end{equation}
+
+where $\sigma_{i,s}^2$ represents the instantaneous volatility at time $s$ and $IV_{i,t}$ is the integrated variance. This convergence result provides the theoretical justification for using high-frequency data to obtain nearly model-free estimates of daily volatility.
+
+However, market microstructure effects can bias realized variance estimates when sampling frequencies become too high \citep{hansen2005realized}. The optimal sampling frequency balances the statistical efficiency gains from using more observations against the microstructure bias from bid-ask bounce and other trading frictions. Our use of multiple sampling frequencies enables assessment of this trade-off and evaluation of result robustness across different temporal resolutions.
+
+To separate continuous price movements from discrete jumps, we employ the bipower variation methodology of \citet{barndorff2004power}:
+
+\begin{equation} \label{eq:bipower_variation}
+BV_{i,t} = \mu_1^{-2} \sum_{j=2}^{M} |r_{i,t,j}| \cdot |r_{i,t,j-1}|
+\end{equation}
+
+where $\mu_1 = \sqrt{2/\pi}$ is a scaling constant ensuring unbiasedness under the null hypothesis of no jumps. Bipower variation provides a consistent estimator of integrated variance that is robust to finite-activity jumps in the price process.
+
+The jump component is identified as the positive difference between realized variance and bipower variation:
+
+\begin{equation} \label{eq:jump_component}
+J_{i,t} = \max(RV_{i,t} - BV_{i,t}, 0)
+\end{equation}
+
+while the continuous component is defined as:
+
+\begin{equation} \label{eq:continuous_component}
+C_{i,t} = RV_{i,t} - J_{i,t} = \min(RV_{i,t}, BV_{i,t})
+\end{equation}
+
+This decomposition enables separate analysis of how continuous volatility and discrete jumps transmit across markets, providing insights into different transmission mechanisms.
+
+\subsection{Heterogeneous Autoregressive (HAR) Model Framework}
+
+The HAR model of \citet{corsi2009simple} provides a parsimonious yet flexible framework for modeling realized volatility dynamics across multiple time horizons. The model's theoretical foundation rests on the heterogeneous market hypothesis, which posits that volatility persistence reflects the aggregated behavior of market participants operating over different investment horizons.
+
+\subsubsection{Baseline HAR Specification}
+
+The standard HAR model for realized volatility takes the form:
+
+\begin{equation} \label{eq:har_baseline}
+\log(RV_{i,t}) = \beta_0 + \beta_1 \log(RV_{i,t-1}) + \beta_2 \log(\overline{RV}_{i,t-5:t-1}) + \beta_3 \log(\overline{RV}_{i,t-22:t-1}) + \varepsilon_{i,t}
+\end{equation}
+
+where $\overline{RV}_{i,t-h:t-1} = \frac{1}{h}\sum_{j=1}^{h} RV_{i,t-j}$ represents the average realized variance over the previous $h$ trading days. The three components capture daily ($RV_{i,t-1}$), weekly ($\overline{RV}_{i,t-5:t-1}$), and monthly ($\overline{RV}_{i,t-22:t-1}$) volatility persistence patterns.
+
+The logarithmic transformation ensures that predicted volatilities remain positive and helps stabilize the residual variance. The error term $\varepsilon_{i,t}$ is assumed to follow a normal distribution with constant variance, though we conduct extensive diagnostic testing to verify this assumption.
+
+\subsubsection{HAR-X Model with Cross-Market Effects}
+
+To examine volatility transmission between ETFs and iNAVs, we extend the baseline HAR model to include cross-market effects. The HAR-X specification for iNAV volatility is:
+
+\begin{align} \label{eq:har_x_nav}
+\log(RV_{t,\text{NAV}}) &= \beta_0 + \beta_1 \log(RV_{t-1,\text{NAV}}) + \beta_2 \log(\overline{RV}_{t-5:t-1,\text{NAV}}) + \beta_3 \log(\overline{RV}_{t-22:t-1,\text{NAV}}) \\
+&\quad + \alpha_1 \log(RV_{t-1,\text{ETF}}) + \alpha_2 \log(\overline{RV}_{t-5:t-1,\text{ETF}}) + \alpha_3 \log(\overline{RV}_{t-22:t-1,\text{ETF}}) + \varepsilon_{t,\text{NAV}} \nonumber
+\end{align}
+
+The corresponding specification for ETF volatility is:
+
+\begin{align} \label{eq:har_x_etf}
+\log(RV_{t,\text{ETF}}) &= \gamma_0 + \gamma_1 \log(RV_{t-1,\text{ETF}}) + \gamma_2 \log(\overline{RV}_{t-5:t-1,\text{ETF}}) + \gamma_3 \log(\overline{RV}_{t-22:t-1,\text{ETF}}) \\
+&\quad + \delta_1 \log(RV_{t-1,\text{NAV}}) + \delta_2 \log(\overline{RV}_{t-5:t-1,\text{NAV}}) + \delta_3 \log(\overline{RV}_{t-22:t-1,\text{NAV}}) + \varepsilon_{t,\text{ETF}} \nonumber
+\end{align}
+
+The spillover coefficients $\alpha_1, \alpha_2, \alpha_3$ measure the impact of ETF volatility on iNAV volatility at daily, weekly, and monthly horizons, while $\delta_1, \delta_2, \delta_3$ capture the reverse transmission from iNAV to ETF. This specification enables testing of several key hypotheses about the nature of volatility transmission. The bidirectional transmission hypothesis posits that both sets of spillover coefficients are jointly significant, indicating that volatility shocks propagate in both directions between ETFs and their underlying assets. Alternatively, the unidirectional transmission hypothesis suggests that spillovers occur primarily in one direction, which would be consistent with either ETF price discovery leading the underlying assets or vice versa. The horizon-specific effects hypothesis examines whether spillover patterns vary systematically across daily, weekly, and monthly time horizons, reflecting the heterogeneous trading behavior of different market participant types.
+
+\subsubsection{HAR-CJ-X Model with Jump Components}
+
+To examine how continuous and jump components transmit separately across markets, we develop an extended HAR-CJ-X specification that decomposes volatility spillovers:
+
+\begin{align} \label{eq:har_cj_x_nav}
+\log(RV_{t,\text{NAV}}) &= \beta_0 + \beta_1 \log(C_{t-1,\text{NAV}}) + \beta_2 \log(\overline{C}_{t-5:t-1,\text{NAV}}) + \beta_3 \log(\overline{C}_{t-22:t-1,\text{NAV}}) \\
+&\quad + \beta_4 \log(1+J_{t-1,\text{NAV}}) + \beta_5 \log(1+\overline{J}_{t-5:t-1,\text{NAV}}) + \beta_6 \log(1+\overline{J}_{t-22:t-1,\text{NAV}}) \nonumber \\
+&\quad + \alpha_1 \log(C_{t-1,\text{ETF}}) + \alpha_2 \log(\overline{C}_{t-5:t-1,\text{ETF}}) + \alpha_3 \log(\overline{C}_{t-22:t-1,\text{ETF}}) \nonumber \\
+&\quad + \alpha_4 \log(1+J_{t-1,\text{ETF}}) + \alpha_5 \log(1+\overline{J}_{t-5:t-1,\text{ETF}}) + \alpha_6 \log(1+\overline{J}_{t-22:t-1,\text{ETF}}) + \varepsilon_{t,\text{NAV}} \nonumber
+\end{align}
+
+The corresponding specification for ETF volatility follows a similar structure. The logarithmic transformation $\log(1+J_{t})$ ensures that the jump terms remain well-defined when $J_{t} = 0$, which occurs frequently in practice.
+
+This specification enables testing of additional hypotheses about transmission mechanisms. The differential transmission hypothesis examines whether continuous and jump components exhibit different spillover patterns, which would suggest that different types of volatility shocks propagate through distinct economic channels. The jump clustering hypothesis investigates whether jump spillovers create predictable clustering in jump behavior across markets, consistent with information-driven common factors affecting both ETF and underlying asset prices simultaneously.
+
+\subsection{Bayesian Vector Autoregression (BVAR) Framework}
+
+While HAR models provide intuitive modeling of volatility persistence, they impose restrictions on dynamic interactions that may not hold in practice. BVAR models offer a more flexible framework for analyzing volatility transmission while addressing the parameter proliferation problems that plague unrestricted VAR estimation.
+
+\subsubsection{VAR Model Specification}
+
+Our baseline VAR model treats ETF and iNAV volatilities as a jointly endogenous system:
+
+\begin{equation} \label{eq:var_baseline}
+\mathbf{y}_t = \mathbf{c} + \sum_{k=1}^{p} \mathbf{A}_k \mathbf{y}_{t-k} + \mathbf{u}_t
+\end{equation}
+
+where $\mathbf{y}_t = [\log(RV_{t,\text{ETF}}), \log(RV_{t,\text{NAV}})]'$ is a $2 \times 1$ vector of endogenous variables, $\mathbf{c}$ is a $2 \times 1$ vector of intercepts, $\mathbf{A}_k$ are $2 \times 2$ coefficient matrices, and $\mathbf{u}_t$ is a $2 \times 1$ vector of error terms with $\mathbf{u}_t \sim \mathcal{N}(\mathbf{0}, \mathbf{\Sigma})$.
+
+The lag length $p$ is selected using information criteria, with particular attention to the Bayesian Information Criterion (BIC) which tends to select parsimonious specifications appropriate for our sample size. In practice, we find that $p = 2$ provides adequate modeling of the dynamic relationships while maintaining reasonable parameter-to-observation ratios.
+
+\subsubsection{Bayesian Estimation with Minnesota Prior}
+
+Classical VAR estimation faces the curse of dimensionality problem: even our simple two-variable system with two lags requires estimation of 10 parameters including intercepts and error variances. Bayesian methods address this problem by incorporating prior information that shrinks coefficient estimates toward sensible values.
+
+We employ the Minnesota prior of \citet{litterman1986forecasting}, which imposes the following structure:
+
+\begin{align} \label{eq:minnesota_prior}
+\beta_{ij}^{(k)} &\sim \mathcal{N}(0, \lambda_1^2 \cdot k^{-\lambda_3}) \quad \text{for } i \neq j \\
+\beta_{ii}^{(1)} &\sim \mathcal{N}(1, \lambda_1^2) \\
+\beta_{ii}^{(k)} &\sim \mathcal{N}(0, \lambda_1^2 \cdot k^{-\lambda_3}) \quad \text{for } k > 1
+\end{align}
+
+where $\beta_{ij}^{(k)}$ represents the coefficient on variable $j$ at lag $k$ in equation $i$. The hyperparameters $\lambda_1$, $\lambda_2$, and $\lambda_3$ control the degree of shrinkage. The overall tightness parameter $\lambda_1$ controls the overall degree of shrinkage, with smaller values imposing more shrinkage. The cross-variable shrinkage parameter $\lambda_2$ controls the relative shrinkage on coefficients of other variables versus own lags. The lag decay parameter $\lambda_3$ controls how rapidly the prior variance decreases with lag length.
+
+Following the established literature, we set $\lambda_1 = 0.2$, $\lambda_2 = 0.5$, and $\lambda_3 = 2$ as baseline values, while conducting sensitivity analysis around these choices. The Minnesota prior embodies several economically sensible assumptions: variables are more likely to be predicted by their own lags than by lags of other variables, recent lags are more important than distant lags, and coefficient values are unlikely to be extremely large. These assumptions are particularly appropriate for volatility modeling, where persistence and mean reversion are well-established stylized facts.
+
+\subsubsection{Posterior Inference via Gibbs Sampling}
+
+We implement Bayesian inference using Gibbs sampling, an MCMC method that iteratively draws from conditional posterior distributions. The algorithm alternates between sampling coefficient matrices conditional on the error covariance matrix and sampling the error covariance matrix conditional on the coefficients.
+
+Conditional on the error covariance matrix $\mathbf{\Sigma}$, the posterior distribution of the coefficient vector $\boldsymbol{\beta} = \text{vec}([\mathbf{c}, \mathbf{A}_1, \ldots, \mathbf{A}_p])$ is multivariate normal:
+
+\begin{equation} \label{eq:coefficient_posterior}
+\boldsymbol{\beta} | \mathbf{\Sigma}, \mathbf{Y} \sim \mathcal{N}(\hat{\boldsymbol{\beta}}, \mathbf{\Sigma} \otimes (\mathbf{X}'\mathbf{X} + \mathbf{V}_0^{-1})^{-1})
+\end{equation}
+
+where $\mathbf{Y}$ and $\mathbf{X}$ are the stacked data matrices, $\mathbf{V}_0$ is the prior covariance matrix, and:
+
+\begin{equation} \label{eq:coefficient_mean}
+\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X} + \mathbf{V}_0^{-1})^{-1}(\mathbf{X}'\text{vec}(\mathbf{Y}) + \mathbf{V}_0^{-1}\boldsymbol{\beta}_0)
+\end{equation}
+
+Conditional on the coefficients, the posterior distribution of the error covariance matrix follows an inverse-Wishart distribution:
+
+\begin{equation} \label{eq:covariance_posterior}
+\mathbf{\Sigma} | \boldsymbol{\beta}, \mathbf{Y} \sim \text{IW}(\mathbf{S} + \mathbf{S}_0, T + \nu_0)
+\end{equation}
+
+where $\mathbf{S} = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})'(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})$ is the sum of squared residuals, $\mathbf{S}_0$ and $\nu_0$ are prior parameters, and $T$ is the sample size.
+
+We run the Gibbs sampler for 50,000 iterations, discarding the first 10,000 as burn-in and retaining every 10th draw to reduce autocorrelation. Convergence diagnostics include trace plots, autocorrelation functions, and the Geweke test for equality of means across different portions of the chain.
+
+\subsubsection{Impulse Response Analysis}
+
+Impulse response functions (IRFs) provide intuitive measures of how shocks propagate through the system over time. For our bivariate system, we examine four impulse responses: ETF responses to ETF and iNAV shocks, and iNAV responses to ETF and iNAV shocks.
+
+The orthogonalized impulse response to a one-standard-deviation shock is computed as:
+
+\begin{equation} \label{eq:impulse_response}
+\text{IRF}(h) = \mathbf{C}_h \mathbf{P}
+\end{equation}
+
+where $\mathbf{C}_h$ represents the $h$-step ahead moving average coefficient matrix from the vector moving average representation, and $\mathbf{P}$ is the Cholesky decomposition of the error covariance matrix $\mathbf{\Sigma}$.
+
+The identification scheme assumes that iNAV innovations can contemporaneously affect ETF volatility, but ETF innovations affect iNAV volatility only with a one-period lag. This ordering reflects the economic intuition that underlying asset price movements should lead ETF price adjustments through arbitrage mechanisms. We compute Bayesian confidence bands for impulse responses using the method of \citet{sims1999error}, which properly accounts for parameter uncertainty in the coefficient estimates.
+
+\subsubsection{Forecast Error Variance Decomposition}
+
+Forecast error variance decompositions quantify the relative importance of each variable's innovations in explaining forecast error variance at different horizons:
+
+\begin{equation} \label{eq:fevd}
+\text{FEVD}_{i,j}(h) = \frac{\sum_{k=0}^{h-1} [\mathbf{C}_k \mathbf{P}]_{i,j}^2}{\sum_{k=0}^{h-1} [\mathbf{C}_k \mathbf{\Sigma} \mathbf{C}_k']_{i,i}}
+\end{equation}
+
+where $\text{FEVD}_{i,j}(h)$ represents the fraction of $h$-step ahead forecast error variance of variable $i$ explained by innovations to variable $j$.
+
+These decompositions provide complementary evidence on volatility transmission patterns. High values of $\text{FEVD}_{\text{ETF},\text{NAV}}(h)$ indicate that iNAV innovations are important for explaining ETF volatility forecast errors, while $\text{FEVD}_{\text{NAV},\text{ETF}}(h)$ measures the reverse relationship.
+
+\subsection{Model Comparison and Selection Criteria}
+
+Given our dual modeling approach, we employ several criteria to assess model performance and compare results across specifications. These criteria address both statistical fit and economic interpretability.
+
+\subsubsection{Statistical Criteria}
+
+We compute Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) values for nested model comparisons. For Bayesian models, we use the Deviance Information Criterion (DIC) which properly accounts for effective parameter count in the presence of shrinkage priors. We evaluate out-of-sample forecasting performance using rolling window estimation. Models are re-estimated every 250 trading days using a 1,000-day estimation window, with forecasts evaluated at 1, 5, and 22-day horizons. Performance metrics include root mean squared error (RMSE) and mean absolute error (MAE).
+
+We conduct extensive residual analysis including tests for serial correlation using the Ljung-Box statistic, heteroskedasticity using the Breusch-Pagan test, and normality using the Jarque-Bera test. For BVAR models, we examine posterior predictive checks comparing actual data to simulated data from the posterior predictive distribution.
+
+\subsubsection{Economic Criteria}
+
+Statistical significance does not necessarily imply economic importance. We evaluate the economic magnitude of spillover effects by computing the impact of one-standard-deviation volatility shocks on forecast volatility levels. We assess parameter stability using recursive estimation and structural break tests. Models with unstable parameters may produce misleading inferences about volatility transmission mechanisms. Results should exhibit reasonable patterns across different commodity types. While we expect some heterogeneity due to different market structures, systematic patterns should emerge that can be explained by economic theory.
+
+\subsection{Robustness Checks and Sensitivity Analysis}
+
+Our empirical analysis includes extensive robustness checks to ensure that our findings reflect genuine economic phenomena rather than methodological artifacts.
+
+\subsubsection{Alternative Specifications}
+
+We estimate HAR models with alternative lag specifications, including HAR-RV models with lags at 1, 5, 10, and 22 days, and BVAR models with different lag lengths ranging from 1 to 4 lags. We examine models using levels rather than logarithms of realized variance, as well as square-root transformations that may better stabilize variance. We estimate time-varying parameter versions of our models to assess whether volatility transmission patterns change over time.
+
+\subsubsection{Sample Sensitivity}
+
+We estimate models over different sub-periods corresponding to distinct market regimes, including pre-crisis periods from 2010-2014, post-crisis periods from 2015-2019, and pandemic periods from 2020-2023. We examine whether volatility transmission patterns differ during periods of market stress, identified using volatility regime-switching models. We conduct bootstrap-based inference to assess the sensitivity of our statistical conclusions to distributional assumptions.
+
+\subsubsection{Alternative Data Constructions}
+
+Our core results examine 1, 5, and 30-minute sampling frequencies. We also estimate models using 15-minute and 60-minute frequencies to assess robustness. We compare results using alternative volatility estimators including truncated realized variance, realized kernel estimators, and range-based volatility measures. We examine sensitivity to different approaches for constructing indicative NAV series, including alternative currency conversion methods and different treatment of cash holdings.
+
+This comprehensive methodological framework enables robust identification of volatility transmission patterns while addressing the multiple econometric challenges posed by high-frequency financial data. The combination of complementary modeling approaches, extensive robustness checks, and rigorous statistical inference provides confidence that our empirical findings reflect genuine economic phenomena rather than methodological artifacts.
